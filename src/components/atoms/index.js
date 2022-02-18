@@ -1,3 +1,5 @@
 import Statusbar from './Statusbar';
+import Badge from './Badge';
+import Gap from './Gap';
 
-export {Statusbar};
+export {Statusbar, Badge, Gap};

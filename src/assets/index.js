@@ -1,4 +1,5 @@
 //IMAGE
 export * from './images';
-// export * from './icon';
-export * from './dummy';
+
+//JSON
+export * from './json';

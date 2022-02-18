@@ -1,0 +1,48 @@
+{
+    "data": [
+        {
+            "id": 1,
+            "image": "https://picsum.photos/id/1033/600/400",
+            "product_name": "7740 Diamonds + 1548 Bonus",
+            "game_name": "Mobile Legends",
+            "price": 2081000,
+            "discount": 0,
+            "sold_item": 100,
+            "stock": 69,
+            "delivery": "10 Menit Kirim"
+        },
+        {
+            "id": 2,
+            "image": "https://picsum.photos/id/1029/600/400",
+            "product_name": "1400 UC",
+            "game_name": "PUBG Mobile",
+            "price": 280000,
+            "discount": 18,
+            "sold_item": 10,
+            "stock": 1000,
+            "delivery": "10 Menit Kirim"
+        },
+        {
+            "id": 3,
+            "image": "https://picsum.photos/id/1044/600/400",
+            "product_name": "Permafrost | Survive The Killer",
+            "game_name": "Roblox",
+            "price": 220000,
+            "discount": 0,
+            "sold_item": 50,
+            "stock": 500,
+            "delivery": "10 Menit Kirim"
+        },
+        {
+            "id": 4,
+            "image": "https://picsum.photos/id/1050/600/400",
+            "product_name": "Between the Stars",
+            "game_name": null,
+            "price": 100000,
+            "discount": 0,
+            "sold_item": 5,
+            "stock": 7,
+            "delivery": null
+        }
+    ]
+}
