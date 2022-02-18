@@ -2,6 +2,7 @@ import React, {useEffect} from 'react';
 import {StyleSheet, View, Image} from 'react-native';
 import { ImgLogo } from 'assets';
 import {colors} from 'utils';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 export default function Splash({navigation}) {
   useEffect(() => {
@@ -19,14 +20,13 @@ export default function Splash({navigation}) {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 50,
     backgroundColor: colors.white,
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
   },
   logo: {
-    width: 203,
-    height: 203,
+    width: wp(25),
+    height: hp(25),
   },
 });

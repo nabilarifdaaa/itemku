@@ -1,4 +1,4 @@
 //IMAGE
 export * from './images';
 // export * from './icon';
-// export * from './dummy';
+export * from './dummy';
