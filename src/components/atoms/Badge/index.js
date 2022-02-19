@@ -1,5 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
+import { widthPercentageToDP } from 'react-native-responsive-screen';
 import {colors} from 'utils';
 
 const Badge = ({text, type}) => {
@@ -20,18 +21,9 @@ const Badge = ({text, type}) => {
   if (type === 'delivery') {
     return (
       <View
-        style={{
-          borderRadius: 2,
-          backgroundColor: colors.badge.fillGreen,
-          paddingHorizontal: 5,
-          paddingVertical: 3,
-        }}>
+        style={styles.greenFill}>
         <Text
-          style={{
-            color: colors.badge.borderGreen,
-            fontSize: 12,
-            fontWeight: 'bold',
-          }}>
+          style={styles.greenTxt}>
           {text}
         </Text>
       </View>
@@ -56,7 +48,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 2,
     borderColor: colors.badge.borderGreen,
-    maxWidth: 75,
+    maxWidth: widthPercentageToDP(15),
   },
   greenTxt: {
     color: colors.badge.borderGreen,
@@ -67,7 +59,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 2,
     borderColor: colors.badge.borderOrange,
-    maxWidth: 75,
+    maxWidth: widthPercentageToDP(14),
   },
   orangeTxt: {
     color: colors.badge.borderOrange,
@@ -77,10 +69,15 @@ const styles = StyleSheet.create({
   fillRed: {
     borderRadius: 2, 
     backgroundColor: colors.badge.fillRed,
-    paddingHorizontal: 5
+    paddingHorizontal: 3
   },
   whiteTxt: {
     color: colors.white,
     fontSize: 10
+  },
+  greenFill: {
+    borderRadius: 2,
+    backgroundColor: colors.badge.fillGreen,
+    maxWidth: widthPercentageToDP(22)
   }
 });

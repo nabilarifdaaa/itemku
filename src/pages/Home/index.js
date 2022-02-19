@@ -1,11 +1,10 @@
 import React from 'react';
 import {StyleSheet, View, ScrollView, Text} from 'react-native';
-import {ImgLogoText, JSONProductList, JSONProductList2} from 'assets';
+import {JSONProductList, JSONProductList2} from 'assets';
 import {colors} from 'utils';
 import {ListProduct, Statusbar, Footer, HeaderLogo} from 'components';
 import {
   widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 
 const Home = ({navigation}) => {

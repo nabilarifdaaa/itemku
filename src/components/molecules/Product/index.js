@@ -2,7 +2,8 @@ import React, {useEffect, useState} from 'react';
 import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import DropShadow from 'react-native-drop-shadow';
 import {colors} from 'utils';
-import {Badge, Gap} from 'components';
+import {Badge, Gap} from '../../atoms';
+import { Title } from '..';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -18,6 +19,8 @@ const Product = ({
   stock,
   delivery,
   onPress,
+  desc,
+  descSize,
 }) => {
   const formattedPrice = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
 
@@ -40,13 +43,7 @@ const Product = ({
           </View>
           <View style={styles.content}>
             <View>
-              <Text style={styles.productTxt}>{product_name}</Text>
-              {game_name && (
-                <View>
-                  <Gap height={5} />
-                  <Text style={styles.gameTxt}>{game_name}</Text>
-                </View>
-              )}
+              <Title type="product" product_name={product_name} game_name={game_name} desc={desc} descSize={descSize} />
               <Gap height={10} />
               <Badge text={stock} type="stock" />
               <Gap height={10} />
@@ -81,8 +78,12 @@ const Product = ({
 export default Product;
 const styles = StyleSheet.create({
   container: {
+    display: 'flex',
+    // flexGrow: 1,
     width: wp(35),
+    flexWrap: 'wrap',
     marginRight: 20,
+    alignItems: 'stretch'
   },
   img: {
     height: hp(10),
@@ -95,25 +96,23 @@ const styles = StyleSheet.create({
     shadowRadius: 3,
   },
   card: {
+    flex: 1,
+    // flexGrow: 1,
+    alignItems: 'stretch',
     backgroundColor: colors.white,
     borderRadius: 10,
     overflow: 'hidden',
-    height: hp(35),
+    alignSelf: 'stretch'
+    // display: 'flex'
   },
   content: {
-    flex: 1,
-    justifyContent: 'space-between',
+    display: 'flex',
+    flexDirection: 'column',
+    width: '100%',
+    // justifyContent: 'space-between',
     padding: 10,
   },
-  productTxt: {
-    color: colors.text.primary,
-    fontSize: 12,
-    fontWeight: 'bold',
-  },
-  gameTxt: {
-    color: colors.text.secondary,
-    fontSize: 12,
-  },
+  
   priceTxt: {
     color: colors.text.orange,
     fontSize: 14,
@@ -122,6 +121,7 @@ const styles = StyleSheet.create({
   soldTxt: {
     color: '#9F9F9F',
     fontSize: 12,
+    marginTop: 'auto'
   },
   discountTxt: {
     textDecorationLine: 'line-through',

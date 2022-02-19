@@ -9,7 +9,8 @@
             "discount": 0,
             "sold_item": 100,
             "stock": 69,
-            "delivery": "10 Menit Kirim"
+            "delivery": "10 Menit Kirim",
+            "description": "Deskripsi produk mobile legends dari toko UlalaShop yang paling termurah Deskripsi produk mobile legends dari toko UlalaShop yang paling termurah Deskripsi produk mobile legends dari toko UlalaShop yang paling termurah"
         },
         {
             "id": 2,
@@ -20,7 +21,8 @@
             "discount": 18,
             "sold_item": 10,
             "stock": 1000,
-            "delivery": "10 Menit Kirim"
+            "delivery": "10 Menit Kirim",
+            "description": "Deskripsi produk mobile legends dari toko UlalaShop yang paling termurah Deskripsi produk mobile legends dari toko UlalaShop yang paling termurah Deskripsi produk mobile legends dari toko UlalaShop yang paling termurah"
         },
         {
             "id": 3,
@@ -31,7 +33,8 @@
             "discount": 0,
             "sold_item": 50,
             "stock": 500,
-            "delivery": "10 Menit Kirim"
+            "delivery": "10 Menit Kirim",
+            "description": "Deskripsi produk mobile legends dari toko UlalaShop yang paling termurah Deskripsi produk mobile legends dari toko UlalaShop yang paling termurah Deskripsi produk mobile legends dari toko UlalaShop yang paling termurah"
         },
         {
             "id": 4,
@@ -42,7 +45,9 @@
             "discount": 0,
             "sold_item": 5,
             "stock": 999,
-            "delivery": null
+            "delivery": null,
+            "description": "Deskripsi produk mobile legends dari toko UlalaShop yang paling termurah Deskripsi produk mobile legends dari toko UlalaShop yang paling termurah Deskripsi produk mobile legends dari toko UlalaShop yang paling termurah"
         }
-    ]
+    ],
+    "desc" : "Produk dari penjual penjual yang memberi Garansi Pengiriman 10 Menit"
 }
