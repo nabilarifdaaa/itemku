@@ -6,6 +6,7 @@ const mainColors = {
     red: '#F32F2F',
     grey: '#4D4D4D',
     greyLight: '#9F9F9F',
+    otherGrey: '#595959',
     white: '#ffffff',
     blue: '#2F7FE2'
 }
@@ -27,6 +28,17 @@ export const colors = {
         blue: mainColors.blue
     },
     button: {
-        primary: mainColors.orange
+        primary: mainColors.orange,
+        grey: mainColors.grey,
+        bgIcon: mainColors.otherGrey,
+        white: mainColors.white
+    },
+    input: {
+        blur: {
+            border: mainColors.grey,
+      },
+        focus: {
+            border: mainColors.blue,
+        }
     }
 }

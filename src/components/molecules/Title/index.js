@@ -18,7 +18,6 @@ const Title = ({
   descSize,
   descTruncate,
 }) => {
-  console.log('desc title', desc)
   const [wishlist, setWishlist] = useState(false);
   const [maxLength, setMaxLength] = useState(100)
   if (type === 'product') {

@@ -1,20 +1,59 @@
 import React from 'react';
-import {TouchableOpacity} from 'react-native';
-import { ICClose } from 'assets';
+import {TouchableOpacity, StyleSheet, View} from 'react-native';
+import {ICClose, ICBack, ICCart, ICShare} from 'assets';
+import {colors} from 'utils';
 
-const IconOnly = ({onPress, icon}) => {
+const IconOnly = ({onPress, icon, withBg}) => {
   const Icon = () => {
-      if(icon === 'close'){
-          return <ICClose fill="#0f0"/>
-      }
-      return <ICClose/>
+    if (icon === 'close') {
+      return <ICClose fill={colors.button.grey} style={styles.close} />;
+    }
+    if (icon === 'back-white') {
+      return <ICBack fill={colors.button.white} />;
+    }
+    if (icon === 'share-white') {
+      return <ICShare fill={colors.button.white} />;
+    }
+    if (icon === 'cart-white') {
+      return <ICCart fill={colors.button.white} />;
+    }
+    if (icon === 'back') {
+      return <ICBack fill={colors.button.grey} />;
+    }
+    if (icon === 'share') {
+      return <ICShare fill={colors.button.grey} />;
+    }
+    if (icon === 'cart') {
+      return <ICCart fill={colors.button.grey} />;
+    }
+    return <ICClose />;
   };
 
   return (
-    <TouchableOpacity onPress={onPress}>
-      <Icon/>
-    </TouchableOpacity>
+    <View>
+      {!withBg && (
+        <TouchableOpacity onPress={onPress}>
+          <Icon />
+        </TouchableOpacity>
+      )}
+      {withBg && (
+        <TouchableOpacity onPress={onPress} style={styles.bg}>
+          <Icon />
+        </TouchableOpacity>
+      )}
+    </View>
   );
 };
 
 export default IconOnly;
+const styles = StyleSheet.create({
+  close: {
+    marginTop: -5,
+    marginBottom: 5,
+  },
+  bg: {
+    backgroundColor: colors.button.bgIcon,
+    borderRadius: 5,
+    padding: 2,
+  },
+});

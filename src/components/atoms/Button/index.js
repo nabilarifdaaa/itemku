@@ -4,32 +4,25 @@ import {heightPercentageToDP} from 'react-native-responsive-screen';
 import {colors} from 'utils';
 import IconOnly from './iconOnly';
 
-const Button = ({onPress, type, icon}) => {
+const Button = ({onPress, type, icon, withBg}) => {
   if (type === 'icon-only') {
-    return <IconOnly icon={icon} onPress={onPress}/>;
+    return <IconOnly icon={icon} onPress={onPress} withBg={withBg}/>;
   }
   return (
-    <View style={styles.container}>
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity style={styles.button} onPress={onPress}>
         <Text style={styles.text}>Tambah ke Troli</Text>
       </TouchableOpacity>
-    </View>
   );
 };
 
 export default Button;
 
 const styles = StyleSheet.create({
-  container: {
-      padding: 10,
-      borderTopWidth: 1,
-      borderTopColor: colors.line
-  },
   button: {
     backgroundColor: colors.button.primary,
     borderRadius: 5,
     height: heightPercentageToDP(5),
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   text: {
     color: colors.text.white,

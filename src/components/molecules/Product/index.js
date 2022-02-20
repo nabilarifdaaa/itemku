@@ -1,9 +1,9 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import DropShadow from 'react-native-drop-shadow';
 import {colors} from 'utils';
-import {Badge, Gap} from '../../atoms';
-import { Title } from '..';
+import {Badge, Gap, Price} from '../../atoms';
+import { DiscountTag, Title } from '..';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -22,8 +22,6 @@ const Product = ({
   desc,
   descSize,
 }) => {
-  const formattedPrice = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-
   const countDisc = () => {
     const disc = discount * price / 100
     const priceAfterDisc = price - disc
@@ -55,14 +53,11 @@ const Product = ({
               )}
               {discount !== 0 && (
                 <View>
-                  <View style={{flexDirection: 'row'}}>
-                    <Badge text={discount} type="discount" />
-                    <Text style={styles.discountTxt}>{formattedPrice}</Text>
-                  </View>
+                  <DiscountTag discount={discount} price={price}/>
                   <Gap height={10} />
                 </View>
               )}
-              <Text style={styles.priceTxt}>Rp {formattedPrice}</Text>
+              <Price price={price}/>
             </View>
             <View>
               <Gap height={10} />
@@ -112,22 +107,9 @@ const styles = StyleSheet.create({
     // justifyContent: 'space-between',
     padding: 10,
   },
-  
-  priceTxt: {
-    color: colors.text.orange,
-    fontSize: 14,
-    fontWeight: 'bold',
-  },
   soldTxt: {
     color: '#9F9F9F',
     fontSize: 12,
     marginTop: 'auto'
-  },
-  discountTxt: {
-    textDecorationLine: 'line-through',
-    textDecorationStyle: 'solid',
-    color: colors.text.secondary,
-    fontSize: 10,
-    marginLeft: wp(1)
   },
 });

@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 2,
     borderColor: colors.badge.borderGreen,
-    maxWidth: widthPercentageToDP(15),
+    maxWidth: widthPercentageToDP(16),
   },
   greenTxt: {
     color: colors.badge.borderGreen,
