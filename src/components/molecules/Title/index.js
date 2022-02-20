@@ -1,8 +1,10 @@
 import React, {useState} from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {Gap, Link, Button} from '../../atoms';
+import {Gap, Link, Button} from 'atoms';
+import {ConfigToast} from '..';
 import {ICWishlist, ICWishlistFill} from 'assets';
 import {colors} from 'utils';
+import Toast from 'react-native-toast-message';
 
 const Title = ({
   product_name,
@@ -19,7 +21,26 @@ const Title = ({
   descTruncate,
 }) => {
   const [wishlist, setWishlist] = useState(false);
-  const [maxLength, setMaxLength] = useState(100)
+  const [maxLength, setMaxLength] = useState(100);
+  console.log(desc)
+
+  const showToast = () => {
+    setWishlist(!wishlist);
+    if (!wishlist) {
+      Toast.show({
+        type: 'basic',
+        position: 'bottom',
+        text1: 'Produk ditambahkan ke Wishlist',
+      });
+    } else {
+      Toast.show({
+        type: 'basic',
+        position: 'bottom',
+        text1: 'Produk dihapus dari Wishlist',
+      });
+    }
+  };
+
   if (type === 'product') {
     return (
       <View style={styles.row}>
@@ -33,8 +54,13 @@ const Title = ({
           )}
         </View>
         {hasWishlist && (
-          <TouchableOpacity onPress={() => setWishlist(!wishlist)}>
-            {wishlist && <ICWishlistFill />}
+          <TouchableOpacity onPress={showToast}>
+            {wishlist && (
+              <>
+                <ICWishlistFill />
+                <Toast config={ConfigToast} />
+              </>
+            )}
             {!wishlist && <ICWishlist />}
           </TouchableOpacity>
         )}
@@ -48,7 +74,9 @@ const Title = ({
         {hasShowAll && <Link text={textShowAll} />}
         {hasClose && <Button type="icon-only" icon="close" onPress={onPress} />}
       </View>
-      {(desc && !descTruncate) && <Text style={styles.desc(descSize)}>{desc}</Text>}
+      {desc && !descTruncate && (
+      <Text style={styles.desc(descSize)}>{desc}</Text>
+      )}
       {descTruncate && (
         <View>
           <Text style={styles.desc(descSize)}>

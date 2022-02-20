@@ -19,7 +19,13 @@ const ListProduct = ({
 }) => {
   return (
     <View style={styles.container}>
-      <Title title={title} hasShowAll={hasShowAll} textShowAll={textShowAll} />
+      <Title
+        title={title}
+        hasShowAll={hasShowAll}
+        textShowAll={textShowAll}
+        desc={desc}
+        descSize={descSize}
+      />
       <View style={styles.scrollWrapper}>
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
           <View style={styles.listWrapped}>
@@ -41,8 +47,6 @@ const ListProduct = ({
                       items,
                     })
                   }
-                  desc={desc}
-                  descSize={descSize}
                 />
               );
             })}

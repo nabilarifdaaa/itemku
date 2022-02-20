@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import DropShadow from 'react-native-drop-shadow';
 import {colors} from 'utils';
@@ -22,10 +22,12 @@ const Product = ({
   desc,
   descSize,
 }) => {
-  const countDisc = () => {
+  const [newPrice, setNewPrice] = useState(0)
+  useEffect(() => {
     const disc = discount * price / 100
     const priceAfterDisc = price - disc
-  }
+    setNewPrice(priceAfterDisc)
+  }, []);
 
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>
@@ -57,7 +59,7 @@ const Product = ({
                   <Gap height={10} />
                 </View>
               )}
-              <Price price={price}/>
+              <Price price={newPrice}/>
             </View>
             <View>
               <Gap height={10} />

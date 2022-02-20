@@ -5,5 +5,6 @@ import Header from './Header';
 import Title from './Title';
 import DiscountTag from './DiscountTag';
 import Counter from './Counter';
+import ConfigToast from './ConfigToast';
 
-export {Product, Footer, HeaderLogo, Header, Title, DiscountTag, Counter};
+export {Product, Footer, HeaderLogo, Header, Title, DiscountTag, Counter, ConfigToast};

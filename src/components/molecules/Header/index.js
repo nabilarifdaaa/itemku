@@ -2,11 +2,8 @@ import React from 'react';
 import {
   Animated,
   StyleSheet,
-  TouchableOpacity,
   View,
-  Platform,
 } from 'react-native';
-import {ICBack, ICCart, ICShare} from 'assets';
 import {colors} from 'utils';
 import {Button, Gap} from '../../atoms';
 import {widthPercentageToDP} from 'react-native-responsive-screen';
@@ -63,14 +60,7 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
     paddingHorizontal: widthPercentageToDP(5),
     position: 'absolute',
-    ...Platform.select({
-      ios: {
-        zIndex: 1,
-      },
-      android: {
-        elevation: 1,
-      },
-    }),
+    zIndex: 1,
     backgroundColor: onScroll ? colors.white : 'transparent',
   }),
   row: {

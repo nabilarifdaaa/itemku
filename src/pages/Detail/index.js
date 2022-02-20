@@ -16,6 +16,7 @@ import {
   Gap,
   Input,
   Counter,
+  ConfigToast
 } from 'components';
 import {JSONProductList2} from 'assets';
 import {colors} from 'utils';
@@ -40,21 +41,22 @@ const Detail = ({route, navigation}) => {
   const showToast = () => {
     SheetManager.hide('add_cart');
     Toast.show({
-      type: 'tomatoToast',
+      type: 'basic',
       position: 'bottom',
+      text1: 'Produk ditambahkan ke Troli'
     });
   };
 
-  const toastConfig = {
-    tomatoToast: () => (
-      <View style={styles.toast}>
-        <Text style={styles.toastTxt}>
-          Produk berhasil ditambahkan ke Troli
-        </Text>
-        <Link text="Lihat" />
-      </View>
-    ),
-  };
+  // const ConfigToast = {
+  //   basic: ({text1}) => (
+  //     <View style={styles.toast}>
+  //       <Text style={styles.toastTxt}>
+  //         {text1}
+  //       </Text>
+  //       <Link text="Lihat" />
+  //     </View>
+  //   ),
+  // };
 
   return (
     <View style={styles.container}>
@@ -154,7 +156,7 @@ const Detail = ({route, navigation}) => {
           <Button onPress={showToast} />
         </View>
       </ActionSheet>
-      <Toast config={toastConfig} />
+      <Toast config={ConfigToast} />
     </View>
   );
 };
@@ -200,18 +202,5 @@ const styles = StyleSheet.create({
   right: {
     alignItems: 'flex-end',
   },
-  toast: {
-    height: hp(6),
-    width: wp(92),
-    backgroundColor: colors.toast,
-    marginBottom: hp(7),
-    borderRadius: 5,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingHorizontal: wp(4)
-  },
-  toastTxt: {
-    color: colors.text.white,
-  },
+  
 });
