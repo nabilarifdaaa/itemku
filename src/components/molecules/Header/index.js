@@ -79,5 +79,5 @@ const styles = StyleSheet.create({
   rowSpace: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-  }
+  },
 });

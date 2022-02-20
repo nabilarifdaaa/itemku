@@ -4,5 +4,6 @@ import HeaderLogo from './HeaderLogo';
 import Header from './Header';
 import Title from './Title';
 import DiscountTag from './DiscountTag';
+import Counter from './Counter';
 
-export {Product, Footer, HeaderLogo, Header, Title, DiscountTag};
+export {Product, Footer, HeaderLogo, Header, Title, DiscountTag, Counter};

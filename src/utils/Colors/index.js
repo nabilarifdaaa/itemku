@@ -8,7 +8,8 @@ const mainColors = {
     greyLight: '#9F9F9F',
     otherGrey: '#595959',
     white: '#ffffff',
-    blue: '#2F7FE2'
+    blue: '#2F7FE2',
+    greyDark: '#222222'
 }
 
 export const colors = {
@@ -30,8 +31,10 @@ export const colors = {
     button: {
         primary: mainColors.orange,
         grey: mainColors.grey,
+        greyLight: mainColors.greyLight,
         bgIcon: mainColors.otherGrey,
-        white: mainColors.white
+        white: mainColors.white,
+        blue: mainColors.blue
     },
     input: {
         blur: {
@@ -40,5 +43,6 @@ export const colors = {
         focus: {
             border: mainColors.blue,
         }
-    }
+    },
+    toast: mainColors.greyDark
 }

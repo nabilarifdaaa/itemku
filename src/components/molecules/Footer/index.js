@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {colors} from 'utils';
 
-export default function Footer() {
+const Footer = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>
@@ -13,13 +13,14 @@ export default function Footer() {
       </Text>
     </View>
   );
-}
+};
+export default Footer;
 
 const styles = StyleSheet.create({
   container: {
-      paddingVertical: 20,
-      borderTopWidth: 1,
-      borderTopColor: colors.line
+    paddingVertical: 20,
+    borderTopWidth: 1,
+    borderTopColor: colors.line,
   },
   text: {
     color: colors.text.secondary,

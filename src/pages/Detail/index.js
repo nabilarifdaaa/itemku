@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {StyleSheet, Image, View, ScrollView} from 'react-native';
+import {StyleSheet, Image, View, ScrollView, Text} from 'react-native';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -15,30 +15,50 @@ import {
   Badge,
   Gap,
   Input,
+  Counter,
 } from 'components';
 import {JSONProductList2} from 'assets';
 import {colors} from 'utils';
 import ActionSheet, {SheetManager} from 'react-native-actions-sheet';
+import Toast from 'react-native-toast-message';
 
 const Detail = ({route, navigation}) => {
   const item = route.params.items;
   const [onScroll, setOnScroll] = useState(false);
-  let scrollY
+  let scrollY;
 
-  handleScroll = (event) => {
-    scrollY = event.nativeEvent.contentOffset.y
+  handleScroll = event => {
+    scrollY = event.nativeEvent.contentOffset.y;
     console.log(scrollY);
     if (scrollY > 0) {
-    setOnScroll(true)
+      setOnScroll(true);
     } else {
-      setOnScroll(false)
-      
+      setOnScroll(false);
     }
+  };
+
+  const showToast = () => {
+    SheetManager.hide('add_cart');
+    Toast.show({
+      type: 'tomatoToast',
+      position: 'bottom',
+    });
+  };
+
+  const toastConfig = {
+    tomatoToast: () => (
+      <View style={styles.toast}>
+        <Text style={styles.toastTxt}>
+          Produk berhasil ditambahkan ke Troli
+        </Text>
+        <Link text="Lihat" />
+      </View>
+    ),
   };
 
   return (
     <View style={styles.container}>
-      <Header onPressBack={() => navigation.goBack()} onScroll={onScroll}/>
+      <Header onPressBack={() => navigation.goBack()} onScroll={onScroll} />
       <ScrollView showsVerticalScrollIndicator={false} onScroll={handleScroll}>
         <Image
           source={{
@@ -126,10 +146,15 @@ const Detail = ({route, navigation}) => {
             label="Catatan untuk penjual (optional)"
             placeholder="Catatan"
           />
+          <Gap height={15} />
+          <View style={styles.right}>
+            <Counter />
+          </View>
           <Gap height={30} />
-          <Button />
+          <Button onPress={showToast} />
         </View>
       </ActionSheet>
+      <Toast config={toastConfig} />
     </View>
   );
 };
@@ -171,5 +196,22 @@ const styles = StyleSheet.create({
   rowSpace: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+  },
+  right: {
+    alignItems: 'flex-end',
+  },
+  toast: {
+    height: hp(6),
+    width: wp(92),
+    backgroundColor: colors.toast,
+    marginBottom: hp(7),
+    borderRadius: 5,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: wp(4)
+  },
+  toastTxt: {
+    color: colors.text.white,
   },
 });

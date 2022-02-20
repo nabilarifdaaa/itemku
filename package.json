@@ -23,6 +23,7 @@
     "react-native-screens": "^3.12.0",
     "react-native-svg": "^12.1.1",
     "react-native-svg-transformer": "^1.0.0",
+    "react-native-toast-message": "^2.1.1",
     "tailwind-rn": "^4.2.0"
   },
   "devDependencies": {

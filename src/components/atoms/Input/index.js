@@ -1,20 +1,20 @@
 import React, {useState} from 'react';
 import {StyleSheet, Text, View, TextInput} from 'react-native';
-import {colors} from 'utils'
+import {colors} from 'utils';
 
-const Input = ({label, placeholder}) => {
+const Input = ({label, placeholder, onChangeText, value, height}) => {
   const [focus, setFocus] = useState(false);
   return (
     <View>
-      <View>
-        <Text style={styles.label(focus)}>{label}</Text>
-        <TextInput
-          style={styles.input(focus)}
-          placeholder={placeholder}
-          onFocus={() => setFocus(true)}
-          onBlur={() => setFocus(false)}
-        />
-      </View>
+      <Text style={styles.label(focus)}>{label}</Text>
+      <TextInput
+        style={styles.input(focus,height)}
+        placeholder={placeholder}
+        onFocus={() => setFocus(true)}
+        onBlur={() => setFocus(false)}
+        onChangeText={onChangeText}
+        value={value}
+      />
     </View>
   );
 };
@@ -26,13 +26,12 @@ const styles = StyleSheet.create({
     color: focus === true ? colors.input.focus.label : colors.input.blur.label,
     marginBottom: 5,
   }),
-  input: focus => ({
+  input: (focus, height) => ({
     borderBottomWidth: 1,
     borderBottomColor:
       focus === true ? colors.input.focus.border : colors.input.blur.border,
     paddingVertical: 5,
-    // paddingHorizontal: ,
-    height: 30,
+    height: height ? height : 30,
     fontSize: 12,
   }),
 });
