@@ -4,7 +4,6 @@ import {ICClose, ICBack, ICCart, ICShare} from 'assets';
 import {colors} from 'utils';
 
 const IconOnly = ({onPress, icon, withBg, countCart}) => {
-  console.log('count cart', countCart);
   const BadgeCount = () => {
     return (
       <View style={styles.redCircle}>

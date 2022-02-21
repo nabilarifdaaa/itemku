@@ -9,7 +9,6 @@ import {Button, Gap} from '../../atoms';
 import {widthPercentageToDP} from 'react-native-responsive-screen';
 
 const Header = ({onPressBack, onPressShare, onPressCart, onScroll, countCart}) => {
-  console.log('count cart', countCart)
   return (
     <View style={styles.container(onScroll)}>
       {onScroll && (
