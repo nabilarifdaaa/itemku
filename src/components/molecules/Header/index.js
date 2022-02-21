@@ -8,7 +8,8 @@ import {colors} from 'utils';
 import {Button, Gap} from '../../atoms';
 import {widthPercentageToDP} from 'react-native-responsive-screen';
 
-const Header = ({onPressBack, onPressShare, onPressCart, onScroll}) => {
+const Header = ({onPressBack, onPressShare, onPressCart, onScroll, countCart}) => {
+  console.log(onScroll)
   return (
     <View style={styles.container(onScroll)}>
       {onScroll && (
@@ -17,7 +18,7 @@ const Header = ({onPressBack, onPressShare, onPressCart, onScroll}) => {
           <View style={styles.row}>
             <Button type="icon-only" icon="share" onPress={onPressShare} />
             <Gap width={10} />
-            <Button type="icon-only" icon="cart" onPress={onPressCart} />
+            <Button type="icon-only" icon="cart" onPress={onPressCart} countCart={countCart}/>
           </View>
         </View>
       )}
@@ -42,6 +43,7 @@ const Header = ({onPressBack, onPressShare, onPressCart, onScroll}) => {
               icon="cart-white"
               withBg
               onPress={onPressCart}
+              countCart={countCart}
             />
           </View>
         </View>
@@ -61,12 +63,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: widthPercentageToDP(5),
     position: 'absolute',
     zIndex: 1,
-    backgroundColor: onScroll ? colors.white : 'transparent',
+    backgroundColor: '#000',
   }),
   row: {
     flexDirection: 'row',
   },
   rowSpace: {
+    display: 'flex',
+    zIndex: 99,
     flexDirection: 'row',
     justifyContent: 'space-between',
   },

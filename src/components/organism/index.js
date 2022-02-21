@@ -1,3 +1,4 @@
 import ListProduct from './ListProduct';
+import BottomSheet from './BottomSheet';
 
-export {ListProduct};
+export {ListProduct, BottomSheet};

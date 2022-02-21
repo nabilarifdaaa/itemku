@@ -1,25 +1,19 @@
 import React, {useState} from 'react';
-import {StyleSheet, TouchableOpacity, View} from 'react-native';
+import {StyleSheet, TouchableOpacity, View, Text} from 'react-native';
 import {ICAdd, ICRemove} from 'assets';
 import {colors} from 'utils';
-import {Input} from 'components';
-import {
-  heightPercentageToDP as hp,
-  widthPercentageToDP as wp,
-} from 'react-native-responsive-screen';
+import {Input} from '../../atoms';
+const Counter = ({value}) => {
+  const [v, setV] = useState(0)
 
-const Counter = () => {
-  const [text, onChangeText] = useState('0');
   return (
     <View style={styles.container}>
-      <TouchableOpacity>
-        <ICRemove fill={colors.button.greyLight} />
+      <TouchableOpacity onPress={() => setV(v-1)}>
+        <ICRemove fill={colors.button.greyLight} style={styles.icon}/>
       </TouchableOpacity>
-      <View style={{width: wp(10)}}>
-        <Input height={hp(1)} onChangeText={onChangeText} value={text} />
-      </View>
-      <TouchableOpacity>
-        <ICAdd fill={colors.button.blue} />
+      <Text style={styles.countText}>{v}</Text>
+      <TouchableOpacity onPress={() => setV(v+1)}>
+        <ICAdd fill={colors.button.blue} style={styles.icon} />
       </TouchableOpacity>
     </View>
   );
@@ -30,5 +24,18 @@ export default Counter;
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
+    display: 'flex',
   },
+  input: {
+    height: 40,
+    margin: 12,
+    borderWidth: 1,
+    padding: 10,
+  },
+  icon: {
+    marginHorizontal: 10,
+  },
+  countText: {
+    color: colors.text.primary
+  }
 });

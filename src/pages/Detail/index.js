@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react';
-import {StyleSheet, Image, View, ScrollView, Text} from 'react-native';
+import React, {useState, useRef} from 'react';
+import {Animated, StyleSheet, Image, View, ScrollView} from 'react-native';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -11,30 +11,41 @@ import {
   ListProduct,
   Button,
   Link,
-  Price,
-  Badge,
-  Gap,
-  Input,
-  Counter,
-  ConfigToast
+  ConfigToast,
+  BottomSheet,
 } from 'components';
 import {JSONProductList2} from 'assets';
 import {colors} from 'utils';
-import ActionSheet, {SheetManager} from 'react-native-actions-sheet';
+import {SheetManager} from 'react-native-actions-sheet';
 import Toast from 'react-native-toast-message';
 
 const Detail = ({route, navigation}) => {
   const item = route.params.items;
   const [onScroll, setOnScroll] = useState(false);
+  const [count, setCount] = useState(0)
+  const fadeAnim = useRef(new Animated.Value(0)).current;
   let scrollY;
 
   handleScroll = event => {
+    // Animated.event(
+    //   [{ nativeEvent: { contentOffset: { y: fadeAnim } } }],
+    //   { useNativeDriver: true }
+    // )
     scrollY = event.nativeEvent.contentOffset.y;
-    console.log(scrollY);
     if (scrollY > 0) {
-      setOnScroll(true);
+      Animated.timing(fadeAnim, {
+        toValue: 1,
+        duration: 100,
+        useNativeDriver: true
+      }).start();
+      setOnScroll(fadeAnim);
     } else {
-      setOnScroll(false);
+      Animated.timing(fadeAnim, {
+        toValue: 0,
+        duration: 100,
+        useNativeDriver: true
+      }).start();
+      setOnScroll(fadeAnim);
     }
   };
 
@@ -43,28 +54,37 @@ const Detail = ({route, navigation}) => {
     Toast.show({
       type: 'basic',
       position: 'bottom',
-      text1: 'Produk ditambahkan ke Troli'
+      text1: 'Produk ditambahkan ke Troli',
     });
+    setCount(count+1)
   };
-
-  // const ConfigToast = {
-  //   basic: ({text1}) => (
-  //     <View style={styles.toast}>
-  //       <Text style={styles.toastTxt}>
-  //         {text1}
-  //       </Text>
-  //       <Link text="Lihat" />
-  //     </View>
-  //   ),
-  // };
 
   return (
     <View style={styles.container}>
-      <Header onPressBack={() => navigation.goBack()} onScroll={onScroll} />
-      <ScrollView showsVerticalScrollIndicator={false} onScroll={handleScroll}>
+      <Animated.View
+        style={[
+          styles.fadingContainer,
+          {
+            // Bind opacity to animated value
+            opacity: fadeAnim
+          }
+        ]}
+      >
+
+        <Header onPressBack={() => navigation.goBack()} onScroll={onScroll} countCart={count}/>
+      </Animated.View>
+      {/* <Animated.ScrollView
+        scrollEventThrottle={16}
+        onScroll={Animated.event(
+          [{ nativeEvent: { contentOffset: { y: fadeAnim } } }],
+          { useNativeDriver: true }
+        )}
+      >
+      </Animated.ScrollView> */}
+      <Animated.ScrollView scrollEventThrottle={16} showsVerticalScrollIndicator={false} onScroll={handleScroll}>
         <Image
           source={{
-            uri: item.image,
+            // uri: item.image,
           }}
           style={styles.img}
         />
@@ -83,7 +103,7 @@ const Detail = ({route, navigation}) => {
             desc={item.description}
             descTruncate
           />
-          <View style={{alignItems: 'flex-end', marginTop: 10}}>
+          <View style={styles.right}>
             <Link
               text="Selengkapnya"
               size={14}
@@ -101,61 +121,29 @@ const Detail = ({route, navigation}) => {
           desc={JSONProductList2.desc}
           descSize={10}
         />
-      </ScrollView>
+      </Animated.ScrollView>
       <View style={styles.containerButton}>
         <Button onPress={() => SheetManager.show('add_cart')} />
       </View>
-      <ActionSheet id="product_description">
-        <View style={styles.actions}>
-          <Title
-            title="Deskripsi Produk"
-            hasClose
-            desc={item.description}
-            onPress={() => SheetManager.hide('product_description')}
-          />
-        </View>
-      </ActionSheet>
-      <ActionSheet id="add_cart">
-        <View style={styles.actions}>
-          <Title
-            title="Informasi Pesanan"
-            hasClose
-            onPress={() => SheetManager.hide('add_cart')}
-          />
-          <Gap height={20} />
-          <View style={styles.rowSpace}>
-            <View style={styles.row}>
-              <Image
-                source={{
-                  uri: item.image,
-                }}
-                style={styles.smallImg}
-              />
-              <Title
-                type="product"
-                product_name={item.product_name}
-                game_name={item.game_name}
-              />
-            </View>
-            <View style={{alignItems: 'flex-end'}}>
-              <Price price={item.price} size={12} />
-              <Gap height={hp(1)} />
-              <Badge type="stock" text={item.stock} />
-            </View>
-          </View>
-          <Gap height={15} />
-          <Input
-            label="Catatan untuk penjual (optional)"
-            placeholder="Catatan"
-          />
-          <Gap height={15} />
-          <View style={styles.right}>
-            <Counter />
-          </View>
-          <Gap height={30} />
-          <Button onPress={showToast} />
-        </View>
-      </ActionSheet>
+      <BottomSheet
+        id="product_description"
+        title="Deskripsi Produk"
+        titleDesc={item.description}
+        onPressClose={() => SheetManager.hide('product_description')}
+      />
+      <BottomSheet
+        type="add_cart"
+        id="add_cart"
+        title="Informasi Pesanan"
+        onPressClose={() => SheetManager.hide('add_cart')}
+        img={item.image}
+        product_name={item.product_name}
+        game_name={item.game_name}
+        price={item.price}
+        stock={item.stock}
+        labelInput="Catatan untuk penjual (optional)"
+        onPressButton={showToast}
+      />
       <Toast config={ConfigToast} />
     </View>
   );
@@ -164,6 +152,10 @@ const Detail = ({route, navigation}) => {
 export default Detail;
 
 const styles = StyleSheet.create({
+  fadingContainer: {
+    padding: 20,
+    backgroundColor: "powderblue"
+  },
   container: {
     flex: 1,
     backgroundColor: colors.white,
@@ -176,31 +168,15 @@ const styles = StyleSheet.create({
     borderTopColor: colors.line,
   },
   img: {
+    zIndex: -1,
     width: wp(100),
     height: hp(30),
   },
   section: {
     padding: wp(5),
   },
-  actions: {
-    padding: wp(5),
-    marginBottom: wp(5),
-  },
-  smallImg: {
-    width: wp(10),
-    height: hp(5),
-    borderRadius: 5,
-    marginRight: wp(2),
-  },
-  row: {
-    flexDirection: 'row',
-  },
-  rowSpace: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
   right: {
     alignItems: 'flex-end',
+    marginTop: 10
   },
-  
 });

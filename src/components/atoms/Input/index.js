@@ -6,9 +6,9 @@ const Input = ({label, placeholder, onChangeText, value, height}) => {
   const [focus, setFocus] = useState(false);
   return (
     <View>
-      <Text style={styles.label(focus)}>{label}</Text>
+      {label && <Text style={styles.label}>{label}</Text>}
       <TextInput
-        style={styles.input(focus,height)}
+        style={styles.input(focus, height)}
         placeholder={placeholder}
         onFocus={() => setFocus(true)}
         onBlur={() => setFocus(false)}
@@ -21,11 +21,11 @@ const Input = ({label, placeholder, onChangeText, value, height}) => {
 export default Input;
 
 const styles = StyleSheet.create({
-  label: focus => ({
+  label: {
     fontSize: 12,
-    color: focus === true ? colors.input.focus.label : colors.input.blur.label,
+    color: colors.text.primary,
     marginBottom: 5,
-  }),
+  },
   input: (focus, height) => ({
     borderBottomWidth: 1,
     borderBottomColor:
@@ -33,5 +33,6 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
     height: height ? height : 30,
     fontSize: 12,
+    color: colors.text.primary,
   }),
 });

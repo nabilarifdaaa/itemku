@@ -22,7 +22,6 @@ const Title = ({
 }) => {
   const [wishlist, setWishlist] = useState(false);
   const [maxLength, setMaxLength] = useState(100);
-  console.log(desc)
 
   const showToast = () => {
     setWishlist(!wishlist);

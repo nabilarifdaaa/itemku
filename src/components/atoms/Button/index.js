@@ -4,9 +4,9 @@ import {heightPercentageToDP} from 'react-native-responsive-screen';
 import {colors} from 'utils';
 import IconOnly from './iconOnly';
 
-const Button = ({onPress, type, icon, withBg}) => {
+const Button = ({onPress, type, icon, withBg, countCart}) => {
   if (type === 'icon-only') {
-    return <IconOnly icon={icon} onPress={onPress} withBg={withBg}/>;
+    return <IconOnly icon={icon} onPress={onPress} withBg={withBg} countCart={countCart}/>;
   }
   return (
       <TouchableOpacity style={styles.button} onPress={onPress}>

@@ -30,45 +30,44 @@ const Product = ({
   }, []);
 
   return (
-    <TouchableOpacity style={styles.container} onPress={onPress}>
-      <DropShadow style={styles.shadowProp}>
-        <View style={styles.card}>
+    // <DropShadow style={styles.shadowProp}>
+      <TouchableOpacity style={styles.container} onPress={onPress}>
+        <View>
+          <Image
+            source={{
+              uri: image,
+            }}
+            style={styles.img}
+          />
+        </View>
+        <View style={styles.content}>
           <View>
-            <Image
-              source={{
-                uri: image,
-              }}
-              style={styles.img}
-            />
-          </View>
-          <View style={styles.content}>
-            <View>
-              <Title type="product" product_name={product_name} game_name={game_name} desc={desc} descSize={descSize} />
-              <Gap height={10} />
-              <Badge text={stock} type="stock" />
-              <Gap height={10} />
-              {delivery && (
-                <View>
-                  <Badge text={delivery} type="delivery" />
-                  <Gap height={10} />
-                </View>
-              )}
-              {discount !== 0 && (
-                <View>
-                  <DiscountTag discount={discount} price={price}/>
-                  <Gap height={10} />
-                </View>
-              )}
-              <Price price={newPrice}/>
-            </View>
-            <View>
-              <Gap height={10} />
-              <Text style={styles.soldTxt}>{sold_item} Produk Terjual</Text>
-            </View>
+            <Title type="product" product_name={product_name} game_name={game_name} desc={desc} descSize={descSize} />
+            <Gap height={10} />
+            <Badge text={stock} type="stock" />
+            <Gap height={10} />
+            {delivery && (
+              <View>
+                <Badge text={delivery} type="delivery" />
+                <Gap height={10} />
+              </View>
+            )}
+            {discount !== 0 && (
+              <View>
+                <DiscountTag discount={discount} price={price}/>
+                <Gap height={10} />
+              </View>
+            )}
+            <Price price={newPrice}/>
           </View>
         </View>
-      </DropShadow>
-    </TouchableOpacity>
+        <View style={{marginTop: 'auto', padding: 10}}>
+          <Text style={styles.soldTxt}>{sold_item} Produk Terjual</Text>
+        </View>
+        {/* <View style={styles.card}> */}
+        {/* </View> */}
+      </TouchableOpacity>
+    // </DropShadow>
   );
 };
 
@@ -76,17 +75,18 @@ export default Product;
 const styles = StyleSheet.create({
   container: {
     display: 'flex',
-    // flexGrow: 1,
+    backgroundColor: colors.white,
+    borderRadius: 10,
+    overflow: 'hidden',
     width: wp(35),
-    flexWrap: 'wrap',
-    marginRight: 20,
-    alignItems: 'stretch'
+    flex: 1
   },
   img: {
     height: hp(10),
     width: wp(35),
   },
   shadowProp: {
+    display: 'flex',
     shadowColor: '#171717',
     shadowOffset: {width: 0, height: 3},
     shadowOpacity: 0.1,
