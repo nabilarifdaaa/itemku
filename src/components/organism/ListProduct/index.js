@@ -20,20 +20,27 @@ const ListProduct = ({
 }) => {
   return (
     <View style={styles.container}>
-      <Title
-        title={title}
-        hasShowAll={hasShowAll}
-        textShowAll={textShowAll}
-        desc={desc}
-        descSize={descSize}
-      />
+      <View style={styles.title}>
+        <Title
+          title={title}
+          hasShowAll={hasShowAll}
+          textShowAll={textShowAll}
+          desc={desc}
+          descSize={descSize}
+        />
+      </View>
       <View style={styles.scrollWrapper}>
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
           <View style={styles.listWrapped}>
             <Gap width={70} />
             {json.data.map((items, i) => {
               return (
-                <DropShadow style={(i === items.length - 1) ? {marginRight: 0} : styles.shadowProp}>
+                <DropShadow
+                  style={
+                    i === items.length - 1
+                      ? {marginRight: 0}
+                      : styles.shadowProp
+                  }>
                   <Product
                     key={items.id}
                     image={items.image}
@@ -66,17 +73,15 @@ export default ListProduct;
 const styles = StyleSheet.create({
   container: {
     padding: 20,
-    paddingRight: 0
+    paddingRight: 0,
   },
-  titleSection: {
-    fontSize: 14,
-    color: colors.text.primary,
-    fontWeight: 'bold',
+  title: {
+    marginRight: 20,
   },
   shadowProp: {
     display: 'flex',
     marginRight: 20,
-    shadowColor: '#171717',
+    shadowColor: colors.shadow,
     shadowOffset: {width: 0, height: 3},
     shadowOpacity: 0.1,
     shadowRadius: 3,
@@ -86,6 +91,6 @@ const styles = StyleSheet.create({
   },
   listWrapped: {
     marginVertical: hp(3),
-    flexDirection: 'row'
+    flexDirection: 'row',
   },
 });

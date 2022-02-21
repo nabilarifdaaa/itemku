@@ -30,7 +30,6 @@ const Product = ({
   }, []);
 
   return (
-    // <DropShadow style={styles.shadowProp}>
       <TouchableOpacity style={styles.container} onPress={onPress}>
         <View>
           <Image
@@ -64,10 +63,7 @@ const Product = ({
         <View style={{marginTop: 'auto', padding: 10}}>
           <Text style={styles.soldTxt}>{sold_item} Produk Terjual</Text>
         </View>
-        {/* <View style={styles.card}> */}
-        {/* </View> */}
       </TouchableOpacity>
-    // </DropShadow>
   );
 };
 

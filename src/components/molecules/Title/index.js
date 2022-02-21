@@ -46,10 +46,10 @@ const Title = ({
         <View>
           <Text style={styles.productTxt}>{product_name}</Text>
           {game_name && (
-            <View>
+            <>
               <Gap height={5} />
               <Text style={styles.gameTxt}>{game_name}</Text>
-            </View>
+            </>
           )}
         </View>
         {hasWishlist && (
@@ -70,7 +70,7 @@ const Title = ({
     <View>
       <View style={styles.row}>
         <Text style={styles.titleSection}>{title}</Text>
-        {hasShowAll && <Link text={textShowAll} />}
+        {hasShowAll && <Link text={textShowAll}/>}
         {hasClose && <Button type="icon-only" icon="close" onPress={onPress} />}
       </View>
       {desc && !descTruncate && (

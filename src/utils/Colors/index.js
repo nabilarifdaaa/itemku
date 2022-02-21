@@ -9,12 +9,14 @@ const mainColors = {
     otherGrey: '#595959',
     white: '#ffffff',
     blue: '#2F7FE2',
-    greyDark: '#222222'
+    greyDark: '#222222',
+    shadow: '#171717'
 }
 
 export const colors = {
     white: mainColors.white,
     line: mainColors.greyLine,
+    shadow: mainColors.shadow,
     badge: {
         borderGreen: mainColors.green,
         borderOrange: mainColors.orange,

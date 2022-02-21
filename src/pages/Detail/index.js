@@ -1,5 +1,11 @@
 import React, {useState} from 'react';
-import {StyleSheet, Image, View, ScrollView} from 'react-native';
+import {
+  StyleSheet,
+  Image,
+  View,
+  ScrollView,
+  TouchableOpacity,
+} from 'react-native';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -13,6 +19,7 @@ import {
   Link,
   ConfigToast,
   BottomSheet,
+  ModalImage
 } from 'components';
 import {JSONProductList2} from 'assets';
 import {colors} from 'utils';
@@ -22,7 +29,8 @@ import Toast from 'react-native-toast-message';
 const Detail = ({route, navigation}) => {
   const item = route.params.items;
   const [onScroll, setOnScroll] = useState(false);
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
+  const [visible, setVisible] = useState(false)
   let scrollY;
 
   handleScroll = event => {
@@ -41,19 +49,33 @@ const Detail = ({route, navigation}) => {
       position: 'bottom',
       text1: 'Produk ditambahkan ke Troli',
     });
-    setCount(count+1)
+    setCount(count + 1);
   };
+
+  const showImage = () => {
+    setVisible(true)
+  }
+
+  const closeImage = () => {
+    setVisible(false)
+  }
 
   return (
     <View style={styles.container}>
-      <Header onPressBack={() => navigation.goBack()} onScroll={onScroll} countCart={count}/>
+      <Header
+        onPressBack={() => navigation.goBack()}
+        onScroll={onScroll}
+        countCart={count}
+      />
       <ScrollView showsVerticalScrollIndicator={false} onScroll={handleScroll}>
-        <Image
-          source={{
-            uri: item.image,
-          }}
-          style={styles.img}
-        />
+        <TouchableOpacity onPress={showImage}>
+          <Image
+            source={{
+              uri: item.image,
+            }}
+            style={styles.img}
+          />
+        </TouchableOpacity>
         <View style={styles.section}>
           <Title
             product_name={item.product_name}
@@ -111,6 +133,7 @@ const Detail = ({route, navigation}) => {
         onPressButton={showToast}
       />
       <Toast config={ConfigToast} />
+      <ModalImage visible={visible} image={item.image} onClose={closeImage}/>
     </View>
   );
 };
@@ -138,6 +161,6 @@ const styles = StyleSheet.create({
   },
   right: {
     alignItems: 'flex-end',
-    marginTop: 10
+    marginTop: 10,
   },
 });
