@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {Gap, Link, Button} from 'atoms';
-import {ConfigToast} from '..';
+import {ConfigToast} from '../ConfigToast';
 import {ICWishlist, ICWishlistFill} from 'assets';
 import {colors} from 'utils';
 import Toast from 'react-native-toast-message';

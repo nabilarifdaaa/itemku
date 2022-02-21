@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
-import DropShadow from 'react-native-drop-shadow';
 import {colors} from 'utils';
 import {Badge, Gap, Price} from '../../atoms';
-import { DiscountTag, Title } from '..';
+import { DiscountTag, Title} from '..';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,

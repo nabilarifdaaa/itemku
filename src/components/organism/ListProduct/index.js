@@ -40,7 +40,8 @@ const ListProduct = ({
                     i === items.length - 1
                       ? {marginRight: 0}
                       : styles.shadowProp
-                  }>
+                  }
+                  key={i}>
                   <Product
                     key={items.id}
                     image={items.image}
