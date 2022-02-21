@@ -2,6 +2,7 @@ import React, {useEffect} from 'react';
 import {StyleSheet, View, Image} from 'react-native';
 import {ImgLogo} from 'assets';
 import {colors} from 'utils';
+import { Statusbar } from 'components';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -16,6 +17,7 @@ const Splash = ({navigation}) => {
 
   return (
     <View style={styles.container}>
+      <Statusbar color={colors.white} />
       <Image source={ImgLogo} style={styles.logo} />
     </View>
   );
