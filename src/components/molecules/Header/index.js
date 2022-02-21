@@ -9,7 +9,7 @@ import {Button, Gap} from '../../atoms';
 import {widthPercentageToDP} from 'react-native-responsive-screen';
 
 const Header = ({onPressBack, onPressShare, onPressCart, onScroll, countCart}) => {
-  console.log(onScroll)
+  console.log('count cart', countCart)
   return (
     <View style={styles.container(onScroll)}>
       {onScroll && (
@@ -63,14 +63,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: widthPercentageToDP(5),
     position: 'absolute',
     zIndex: 1,
-    backgroundColor: '#000',
+    backgroundColor: onScroll ? colors.white : 'transparent',
   }),
   row: {
     flexDirection: 'row',
   },
   rowSpace: {
-    display: 'flex',
-    zIndex: 99,
     flexDirection: 'row',
     justifyContent: 'space-between',
   },

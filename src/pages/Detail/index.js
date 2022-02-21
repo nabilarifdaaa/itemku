@@ -1,5 +1,5 @@
-import React, {useState, useRef} from 'react';
-import {Animated, StyleSheet, Image, View, ScrollView} from 'react-native';
+import React, {useState} from 'react';
+import {StyleSheet, Image, View, ScrollView} from 'react-native';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -23,29 +23,14 @@ const Detail = ({route, navigation}) => {
   const item = route.params.items;
   const [onScroll, setOnScroll] = useState(false);
   const [count, setCount] = useState(0)
-  const fadeAnim = useRef(new Animated.Value(0)).current;
   let scrollY;
 
   handleScroll = event => {
-    // Animated.event(
-    //   [{ nativeEvent: { contentOffset: { y: fadeAnim } } }],
-    //   { useNativeDriver: true }
-    // )
     scrollY = event.nativeEvent.contentOffset.y;
     if (scrollY > 0) {
-      Animated.timing(fadeAnim, {
-        toValue: 1,
-        duration: 100,
-        useNativeDriver: true
-      }).start();
-      setOnScroll(fadeAnim);
+      setOnScroll(true);
     } else {
-      Animated.timing(fadeAnim, {
-        toValue: 0,
-        duration: 100,
-        useNativeDriver: true
-      }).start();
-      setOnScroll(fadeAnim);
+      setOnScroll(false);
     }
   };
 
@@ -61,30 +46,11 @@ const Detail = ({route, navigation}) => {
 
   return (
     <View style={styles.container}>
-      <Animated.View
-        style={[
-          styles.fadingContainer,
-          {
-            // Bind opacity to animated value
-            opacity: fadeAnim
-          }
-        ]}
-      >
-
-        <Header onPressBack={() => navigation.goBack()} onScroll={onScroll} countCart={count}/>
-      </Animated.View>
-      {/* <Animated.ScrollView
-        scrollEventThrottle={16}
-        onScroll={Animated.event(
-          [{ nativeEvent: { contentOffset: { y: fadeAnim } } }],
-          { useNativeDriver: true }
-        )}
-      >
-      </Animated.ScrollView> */}
-      <Animated.ScrollView scrollEventThrottle={16} showsVerticalScrollIndicator={false} onScroll={handleScroll}>
+      <Header onPressBack={() => navigation.goBack()} onScroll={onScroll} countCart={count}/>
+      <ScrollView showsVerticalScrollIndicator={false} onScroll={handleScroll}>
         <Image
           source={{
-            // uri: item.image,
+            uri: item.image,
           }}
           style={styles.img}
         />
@@ -121,7 +87,7 @@ const Detail = ({route, navigation}) => {
           desc={JSONProductList2.desc}
           descSize={10}
         />
-      </Animated.ScrollView>
+      </ScrollView>
       <View style={styles.containerButton}>
         <Button onPress={() => SheetManager.show('add_cart')} />
       </View>
@@ -152,10 +118,6 @@ const Detail = ({route, navigation}) => {
 export default Detail;
 
 const styles = StyleSheet.create({
-  fadingContainer: {
-    padding: 20,
-    backgroundColor: "powderblue"
-  },
   container: {
     flex: 1,
     backgroundColor: colors.white,
@@ -168,7 +130,6 @@ const styles = StyleSheet.create({
     borderTopColor: colors.line,
   },
   img: {
-    zIndex: -1,
     width: wp(100),
     height: hp(30),
   },
